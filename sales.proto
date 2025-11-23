@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+message SalesRequest {
+    string category = 1;
+}
+
+message SalesResponse {
+    repeated ProductSales products = 1;
+    double category_total = 2;
+    int32 num_items = 3;
+}
+
+message ProductSales {
+    string product_name = 1;
+    double sales_amount = 2;
+}
+
+message EmptyRequest {}  // Mensagem vazia custom (substitui Empty)
+
+message TotalSalesResponse {
+    double total = 1;
+    int32 num_records = 2;
+}
+
+service SalesService {
+    rpc GetSalesByCategory(SalesRequest) returns (SalesResponse);
+    rpc GetTotalSales(EmptyRequest) returns (TotalSalesResponse);
+}
