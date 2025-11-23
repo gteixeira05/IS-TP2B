@@ -3,6 +3,8 @@ from xmlrpc.server import SimpleXMLRPCServer
 from xmlrpc.server import SimpleXMLRPCRequestHandler
 from pathlib import Path
 
+print("DEBUG: Servidor XML-RPC arrancou!")
+
 class SalesDataService:
     def __init__(self, xml_file):
         xml_path = Path(xml_file).resolve()
@@ -49,7 +51,7 @@ class RequestHandler(SimpleXMLRPCRequestHandler):
     rpc_paths = ('/RPC2',)
 
 if __name__ == '__main__':
-    server = SimpleXMLRPCServer(('localhost', 8000), requestHandler=RequestHandler)
+    server = SimpleXMLRPCServer(('0.0.0.0', 8000), requestHandler=RequestHandler)
     server.register_introspection_functions()
     service = SalesDataService('Retail-Supply-Chain-Sales-Dataset_NOVO.xml')
     server.register_instance(service, allow_dotted_names=True)
