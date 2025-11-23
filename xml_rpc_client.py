@@ -2,7 +2,7 @@ import xmlrpc.client
 
 proxy = xmlrpc.client.ServerProxy('http://localhost:8000')
 
-category = 'Furniture'  # Altera aqui para outra categoria se quiseres (ex: 'Furniture')
+category = 'Furniture'
 
 print(f"Vendas no Top 10 por categoria '{category}':")
 sales_by_cat = proxy.get_sales_by_category(category)
